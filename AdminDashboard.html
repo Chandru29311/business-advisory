@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - STACKLY Business Advisory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <a href="AdminDashboard.html" class="sidebar-logo-link" style="display: flex; align-items: center;">
+          <img src="assets/logo.webp" alt="STACKLY Logo">
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="#admin-tab-dashboard" class="sidebar-link active" data-tab="admin-tab-dashboard"><span class="icon"><i class="fa-solid fa-chart-pie"></i></span> <span>Dashboard</span></a></li>
+        <li><a href="#admin-tab-clients" class="sidebar-link" data-tab="admin-tab-clients"><span class="icon"><i class="fa-solid fa-users"></i></span> <span>Clients</span></a></li>
+        <li><a href="#admin-tab-services" class="sidebar-link" data-tab="admin-tab-services"><span class="icon"><i class="fa-solid fa-briefcase"></i></span> <span>Advisory Services</span></a></li>
+        <li><a href="#admin-tab-reports" class="sidebar-link" data-tab="admin-tab-reports"><span class="icon"><i class="fa-solid fa-file-invoice"></i></span> <span>Reports</span></a></li>
+        <li><a href="#admin-tab-appointments" class="sidebar-link" data-tab="admin-tab-appointments"><span class="icon"><i class="fa-solid fa-calendar-days"></i></span> <span>Appointments</span></a></li>
+      </ul>
+
+      <div class="sidebar-user-info">
+        <div class="avatar user-avatar-icon" style="width: 32px; height: 32px; font-size: 12px; flex-shrink: 0;">AD</div>
+        <div class="user-details">
+          <strong class="user-display-email-text">admin@stackly.com</strong>
+          <span class="user-display-role-text">Admin Portal</span>
+        </div>
+      </div>
+
+      <div class="sidebar-logout">
+        <a href="Login.html" class="sidebar-link"><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span> <span>Logout</span></a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Mobile Top Navbar -->
+      <div class="mobile-topbar">
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Sidebar Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="mobile-page-title" id="mobile-page-title">Dashboard</div>
+        <div class="mobile-user-avatar user-avatar-firstletter">A</div>
+      </div>
+
+      <div class="dashboard-topbar">
+        <div class="topbar-title">
+          <h1>Admin Control Center</h1>
+          <p>Global Business Advisory &amp; Client Telemetry Overview</p>
+        </div>
+        <div class="topbar-user">
+          <div class="user-badge">
+            <div class="avatar user-avatar-icon">AD</div>
+            <div>
+              <strong class="user-display-email-text" style="font-size: 14px; color: #fff; display: block;">admin@stackly.com</strong>
+              <span class="user-display-role-text" style="font-size: 11px; color: var(--primary);">Admin Portal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 1: DASHBOARD OVERVIEW -->
+      <div id="admin-tab-dashboard" class="tab-content active">
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Total Clients</span>
+              <h3>148</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Active Plans</span>
+              <h3>112</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Consultations</span>
+              <h3>342</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-handshake"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Quarterly Revenue</span>
+              <h3>$1,845,000</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Pending Requests</span>
+              <h3>14</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Advisory Revenue Growth</h3>
+            <div class="chart-container">
+              <canvas id="adminRevenueChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Client Growth By Tier</h3>
+            <div class="chart-container">
+              <canvas id="adminClientChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Advisory Sessions By Category</h3>
+            <div class="chart-container">
+              <canvas id="adminSessionChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Client Business Performance Index</h3>
+            <div class="chart-container">
+              <canvas id="adminPerformanceChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Recent Advisory Requests</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">View All Requests</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Client Organization</th>
+                <th>Advisory Plan</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apex Logistics Group</td>
+                <td>Enterprise</td>
+                <td>Digital Transformation</td>
+                <td><span class="status-badge status-active">Active</span></td>
+                <td><a href="404.html" style="color: var(--primary);">Details</a></td>
+              </tr>
+              <tr>
+                <td>Fintech Innovators Inc</td>
+                <td>Business</td>
+                <td>Strategic Planning</td>
+                <td><span class="status-badge status-active">Active</span></td>
+                <td><a href="404.html" style="color: var(--primary);">Details</a></td>
+              </tr>
+              <tr>
+                <td>Global BioHealth Corp</td>
+                <td>Enterprise</td>
+                <td>Risk Management</td>
+                <td><span class="status-badge status-pending">Pending Review</span></td>
+                <td><a href="404.html" style="color: var(--primary);">Details</a></td>
+              </tr>
+              <tr>
+                <td>Nexus Retail Ltd</td>
+                <td>Starter</td>
+                <td>Financial Advisory</td>
+                <td><span class="status-badge status-active">Active</span></td>
+                <td><a href="404.html" style="color: var(--primary);">Details</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2: CLIENTS MANAGEMENT -->
+      <div id="admin-tab-clients" class="tab-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Total Organizations</span>
+              <h3>148</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-building-user"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Enterprise Tier</span>
+              <h3>42</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-crown"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Avg Growth Rate</span>
+              <h3 style="color: var(--primary);">+28.4%</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Client Retention</span>
+              <h3>96.4%</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-user-check"></i></div>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Client Acquisition &amp; Retention</h3>
+            <div class="chart-container">
+              <canvas id="adminClientRetentionChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Portfolio Distribution by Sector</h3>
+            <div class="chart-container">
+              <canvas id="adminClientIndustryChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Client Directory &amp; Health Metrics</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">Add New Client</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Organization</th>
+                <th>Tier</th>
+                <th>Industry</th>
+                <th>Health Score</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Apex Logistics Group</td>
+                <td>Enterprise</td>
+                <td>Logistics &amp; Freight</td>
+                <td><strong style="color: var(--primary);">94 / 100</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+                <td><a href="404.html" style="color: var(--primary);">Manage</a></td>
+              </tr>
+              <tr>
+                <td>Fintech Innovators Inc</td>
+                <td>Business</td>
+                <td>Financial Tech</td>
+                <td><strong style="color: var(--primary);">88 / 100</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+                <td><a href="404.html" style="color: var(--primary);">Manage</a></td>
+              </tr>
+              <tr>
+                <td>Global BioHealth Corp</td>
+                <td>Enterprise</td>
+                <td>Healthcare &amp; Biotech</td>
+                <td><strong style="color: #fbbf24;">91 / 100</strong></td>
+                <td><span class="status-badge status-pending">Audit Pending</span></td>
+                <td><a href="404.html" style="color: var(--primary);">Manage</a></td>
+              </tr>
+              <tr>
+                <td>Nexus Retail Ltd</td>
+                <td>Starter</td>
+                <td>E-Commerce</td>
+                <td><strong style="color: var(--primary);">82 / 100</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+                <td><a href="404.html" style="color: var(--primary);">Manage</a></td>
+              </tr>
+              <tr>
+                <td>Vanguard Tech Ventures</td>
+                <td>Enterprise</td>
+                <td>Artificial Intelligence</td>
+                <td><strong style="color: var(--primary);">96 / 100</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+                <td><a href="404.html" style="color: var(--primary);">Manage</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: ADVISORY SERVICES -->
+      <div id="admin-tab-services" class="tab-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Active Programs</span>
+              <h3>8 Lines</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-briefcase"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Senior Advisors</span>
+              <h3>24 Partners</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-user-tie"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Monthly Hours</span>
+              <h3>1,420 hrs</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-business-time"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Satisfaction Rating</span>
+              <h3 style="color: var(--primary);">4.95 / 5.0</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Monthly Service Hours Utilization</h3>
+            <div class="chart-container">
+              <canvas id="adminServiceUtilizationChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Revenue Share by Advisory Line</h3>
+            <div class="chart-container">
+              <canvas id="adminServiceRevenueChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Advisory Services Performance Summary</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">New Service Line</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Service Name</th>
+                <th>Lead Specialist</th>
+                <th>Active Clients</th>
+                <th>Hourly Rate</th>
+                <th>Completion Rate</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Strategic Growth Planning</td>
+                <td>Dr. Marcus Vance</td>
+                <td>42 Clients</td>
+                <td>$450 / hr</td>
+                <td><strong style="color: var(--primary);">100%</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+              </tr>
+              <tr>
+                <td>Financial Optimization &amp; Audit</td>
+                <td>Sarah Jenkins</td>
+                <td>38 Clients</td>
+                <td>$400 / hr</td>
+                <td><strong style="color: var(--primary);">98%</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+              </tr>
+              <tr>
+                <td>Digital Transformation &amp; AI</td>
+                <td>David Chen</td>
+                <td>29 Clients</td>
+                <td>$500 / hr</td>
+                <td><strong style="color: #fbbf24;">95%</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+              </tr>
+              <tr>
+                <td>Enterprise Risk &amp; Governance</td>
+                <td>Elena Rostova</td>
+                <td>25 Clients</td>
+                <td>$425 / hr</td>
+                <td><strong style="color: var(--primary);">100%</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 4: REPORTS -->
+      <div id="admin-tab-reports" class="tab-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Reports Issued YTD</span>
+              <h3>312</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-file-lines"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Financial Audits</span>
+              <h3>48 Completed</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Risk Assessments</span>
+              <h3>36 Reports</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Pending Reviews</span>
+              <h3 style="color: #fbbf24;">9 Pending</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Monthly Executive Reports Issued</h3>
+            <div class="chart-container">
+              <canvas id="adminReportTypeChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Portfolio Compliance &amp; Governance Index</h3>
+            <div class="chart-container">
+              <canvas id="adminComplianceScoreChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Centralized Executive Reports Repository</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">Generate Report</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Report Title</th>
+                <th>Category</th>
+                <th>Date Issued</th>
+                <th>File Size</th>
+                <th>Status</th>
+                <th>Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Q3 Enterprise Growth Benchmark</td>
+                <td>Strategic Advisory</td>
+                <td>Sep 28, 2026</td>
+                <td>4.2 MB</td>
+                <td><span class="status-badge status-active">Published</span></td>
+                <td><a href="404.html" style="color: var(--primary);"><i class="fa-solid fa-download"></i> PDF</a></td>
+              </tr>
+              <tr>
+                <td>Corporate Financial Audit &amp; Tax Review</td>
+                <td>Financial Audit</td>
+                <td>Sep 22, 2026</td>
+                <td>2.8 MB</td>
+                <td><span class="status-badge status-active">Published</span></td>
+                <td><a href="404.html" style="color: var(--primary);"><i class="fa-solid fa-download"></i> PDF</a></td>
+              </tr>
+              <tr>
+                <td>Global APAC Market Feasibility Study</td>
+                <td>Market Intelligence</td>
+                <td>Sep 15, 2026</td>
+                <td>5.1 MB</td>
+                <td><span class="status-badge status-active">Published</span></td>
+                <td><a href="404.html" style="color: var(--primary);"><i class="fa-solid fa-download"></i> PDF</a></td>
+              </tr>
+              <tr>
+                <td>AI &amp; Automation Security Risk Deck</td>
+                <td>Tech Governance</td>
+                <td>Sep 10, 2026</td>
+                <td>3.4 MB</td>
+                <td><span class="status-badge status-pending">Review Needed</span></td>
+                <td><a href="404.html" style="color: var(--primary);"><i class="fa-solid fa-download"></i> PDF</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 5: APPOINTMENTS -->
+      <div id="admin-tab-appointments" class="tab-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Scheduled Sessions</span>
+              <h3>38 Upcoming</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Today's Sessions</span>
+              <h3 style="color: var(--primary);">6 Sessions</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-video"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Completed This Month</span>
+              <h3>124</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Avg Session Score</span>
+              <h3>4.95 / 5</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-thumbs-up"></i></div>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Weekly Consultation Sessions Volume</h3>
+            <div class="chart-container">
+              <canvas id="adminAppointmentVolumeChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Consultant Capacity Allocation</h3>
+            <div class="chart-container">
+              <canvas id="adminAdvisorLoadChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Master Advisory Schedule &amp; Bookings</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">Schedule Session</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Time &amp; Date</th>
+                <th>Client Organization</th>
+                <th>Topic / Agenda</th>
+                <th>Assigned Advisor</th>
+                <th>Format</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>10:00 AM Today</td>
+                <td>Apex Logistics Group</td>
+                <td>Q4 Strategic Review</td>
+                <td>Dr. Marcus Vance</td>
+                <td>Video Call</td>
+                <td><span class="status-badge status-active">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>02:30 PM Today</td>
+                <td>Fintech Innovators Inc</td>
+                <td>Tax &amp; Capital Advisory</td>
+                <td>Sarah Jenkins</td>
+                <td>Video Call</td>
+                <td><span class="status-badge status-active">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>11:00 AM Tomorrow</td>
+                <td>Global BioHealth Corp</td>
+                <td>M&amp;A Regulatory Audit</td>
+                <td>Elena Rostova</td>
+                <td>In Person</td>
+                <td><span class="status-badge status-pending">Pending Room</span></td>
+              </tr>
+              <tr>
+                <td>04:00 PM Tomorrow</td>
+                <td>Nexus Retail Ltd</td>
+                <td>Supply Chain Automation</td>
+                <td>David Chen</td>
+                <td>Video Call</td>
+                <td><span class="status-badge status-active">Confirmed</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

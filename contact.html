@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - STACKLY Business Advisory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <style>
+    .chat-preview-box {
+      position: fixed;
+      bottom: 90px;
+      right: 30px;
+      width: 360px;
+      height: 440px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    .chat-preview-box.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+    .chat-header {
+      padding: 16px 20px;
+      background: var(--bg-darker);
+      border-bottom: 1px solid var(--border-glass);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .chat-status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 16px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .chat-msg {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+    }
+    .chat-msg.bot {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      align-self: flex-start;
+      border-bottom-left-radius: 2px;
+    }
+    .chat-msg.user {
+      background: var(--primary);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 2px;
+    }
+    .chat-input {
+      padding: 12px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      gap: 8px;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: var(--bg-dark);
+      border: 1px solid var(--border-glass);
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+    }
+    .chat-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 30px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 10px 25px var(--primary-glow);
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    .chat-toggle:hover {
+      transform: scale(1.1);
+    }
+  </style>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- COMMON NAVBAR -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/logo.webp" alt="STACKLY Logo">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="service.html" class="nav-link">Services</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="Login.html" class="btn btn-login">Login</a>
+      </div>
+
+      <button class="hamburger" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu">
+      <div class="mobile-menu-header">
+        <a href="index.html" class="mobile-menu-logo">
+          <img src="assets/logo.webp" alt="STACKLY Logo">
+        </a>
+        <button class="mobile-menu-close" aria-label="Close Navigation Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="service.html" class="nav-link">Services</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+      <a href="Login.html" class="btn btn-login">Login</a>
+    </div>
+  </nav>
+
+  <!-- SECTION 1 – HERO -->
+  <section style="padding-top: 160px; padding-bottom: 60px; text-align: center;">
+    <div class="container" style="max-width: 800px;">
+      <span class="section-subtitle">Get In Touch</span>
+      <h1 class="hero-title" style="font-size: 48px; font-weight: 800; margin-bottom: 20px;">
+        Let's Talk About <span style="color: var(--primary);">Your Business</span>
+      </h1>
+      <p style="color: var(--text-muted); font-size: 18px;">
+        Have a business challenge, growth goal, or strategic question? Connect with the STACKLY advisory team.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 2 – CONTACT CARDS -->
+  <section style="padding-top: 20px;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+        <!-- Phone Card -->
+        <div class="card-glass" style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 16px; color: var(--primary);"><i class="fa-solid fa-phone"></i></div>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Phone</h3>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">Direct advisory support line</p>
+          <a href="tel:9876543210" style="color: var(--primary); font-size: 17px; font-weight: 700;">+91 9876543210</a>
+        </div>
+
+        <!-- Email Card -->
+        <div class="card-glass" style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 16px; color: var(--accent);"><i class="fa-solid fa-envelope"></i></div>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Email</h3>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">Official business inquiries</p>
+          <a href="mailto:info@stackly.com" style="color: var(--primary); font-size: 17px; font-weight: 700;">info@stackly.com</a>
+        </div>
+
+        <!-- Office Card -->
+        <div class="card-glass" style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 16px; color: var(--primary);"><i class="fa-solid fa-location-dot"></i></div>
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">Headquarters Address</h3>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">STACKLY Business Advisory</p>
+          <strong style="color: var(--text-main); font-size: 14px; line-height: 1.5; display: block;">MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 – CONTACT FORM -->
+  <section style="background: var(--bg-darker);">
+    <div class="container" style="max-width: 800px;">
+      <div class="card-glass glow-active" style="padding: 40px;">
+        <h2 style="font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 30px;">Request A Strategic Advisory Consultation</h2>
+        
+        <form id="contact-form" class="contact-form-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <!-- Full Name -->
+          <div style="grid-column: span 1;">
+            <label style="display: block; font-size: 13px; margin-bottom: 6px; color: var(--text-sub);">Full Name *</label>
+            <input type="text" id="fullName" placeholder="John Doe" required style="width: 100%; padding: 12px; border-radius: 8px; background: var(--bg-dark); border: 1px solid var(--border-glass); color: #fff; outline: none;">
+          </div>
+
+          <!-- Email -->
+          <div style="grid-column: span 1;">
+            <label style="display: block; font-size: 13px; margin-bottom: 6px; color: var(--text-sub);">Business Email *</label>
+            <input type="email" id="email" placeholder="john@company.com" required style="width: 100%; padding: 12px; border-radius: 8px; background: var(--bg-dark); border: 1px solid var(--border-glass); color: #fff; outline: none;">
+          </div>
+
+          <!-- Phone -->
+          <div style="grid-column: span 1;">
+            <label style="display: block; font-size: 13px; margin-bottom: 6px; color: var(--text-sub);">Phone Number *</label>
+            <input type="tel" id="phone" placeholder="9876543210" required style="width: 100%; padding: 12px; border-radius: 8px; background: var(--bg-dark); border: 1px solid var(--border-glass); color: #fff; outline: none;">
+          </div>
+
+          <!-- Company -->
+          <div style="grid-column: span 1;">
+            <label style="display: block; font-size: 13px; margin-bottom: 6px; color: var(--text-sub);">Company Name *</label>
+            <input type="text" id="company" placeholder="Acme Corp" required style="width: 100%; padding: 12px; border-radius: 8px; background: var(--bg-dark); border: 1px solid var(--border-glass); color: #fff; outline: none;">
+          </div>
+
+          <!-- Business Type -->
+          <div style="grid-column: span 1;">
+            <label style="display: block; font-size: 13px; margin-bottom: 6px; color: var(--text-sub);">Business Type *</label>
+            <select id="businessType" required style="width: 100%; padding: 12px; border-radius: 8px; background: var(--bg-dark); border: 1px solid var(--border-glass); color: #fff; outline: none;">
+              <option value="">Select Business Type</option>
+              <option value="Startup">Startup</option>
+              <option value="SME">SME</option>
+              <option value="Enterprise">Enterprise</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Subject -->
+          <div style="grid-column: span 1;">
+            <label style="display: block; font-size: 13px; margin-bottom: 6px; color: var(--text-sub);">Subject *</label>
+            <input type="text" id="subject" placeholder="Strategic Planning Inquiry" required style="width: 100%; padding: 12px; border-radius: 8px; background: var(--bg-dark); border: 1px solid var(--border-glass); color: #fff; outline: none;">
+          </div>
+
+          <!-- Message -->
+          <div style="grid-column: span 2;">
+            <label style="display: block; font-size: 13px; margin-bottom: 6px; color: var(--text-sub);">Message *</label>
+            <textarea id="message" rows="5" placeholder="Describe your business challenge or goals..." required style="width: 100%; padding: 12px; border-radius: 8px; background: var(--bg-dark); border: 1px solid var(--border-glass); color: #fff; outline: none;"></textarea>
+          </div>
+
+          <div style="grid-column: span 2; text-align: center; margin-top: 10px;">
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">Submit Consultation Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION – WHAT HAPPENS AFTER YOU SUBMIT (ENGAGEMENT WORKFLOW) -->
+  <section style="padding: 80px 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Engagement Workflow</span>
+        <h2 class="section-title">What Happens After You Submit?</h2>
+        <p class="section-desc">A transparent 4-step sequence from initial inquiry to your customized strategic audit.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px;">
+        <div class="card-glass glow-active" style="padding: 28px; position: relative;">
+          <span style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: 900; color: var(--primary); opacity: 0.6;">01</span>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 20px; margin-bottom: 20px;">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">Initial Review</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">Our senior advisory desk conducts a preliminary audit of your inquiry within 2 hours and assigns a lead partner.</p>
+        </div>
+
+        <div class="card-glass glow-active" style="padding: 28px; position: relative;">
+          <span style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: 900; color: var(--accent); opacity: 0.6;">02</span>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 20px; margin-bottom: 20px;">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">Bilateral NDA Setup</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">We execute a mutual non-disclosure agreement before reviewing sensitive financial metrics or proprietary assets.</p>
+        </div>
+
+        <div class="card-glass glow-active" style="padding: 28px; position: relative;">
+          <span style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: 900; color: var(--primary); opacity: 0.6;">03</span>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 20px; margin-bottom: 20px;">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">Discovery Consultation</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">A 45-minute strategic video briefing with your Lead Partner to map core operational bottlenecks.</p>
+        </div>
+
+        <div class="card-glass glow-active" style="padding: 28px; position: relative;">
+          <span style="position: absolute; top: 20px; right: 20px; font-size: 24px; font-weight: 900; color: var(--accent); opacity: 0.6;">04</span>
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 20px; margin-bottom: 20px;">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text-main);">Custom Audit Roadmap</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">Receive a tailored 90-day advisory proposal complete with defined KPIs, milestone deliverables, and scope.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 – OUR HEADQUARTERS & GOOGLE MAP LOCATION -->
+  <section style="padding: 80px 0; background: var(--bg-darker);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Find Us On Google Maps</span>
+        <h2 class="section-title">Headquarters Location</h2>
+        <p class="section-desc">Visit our primary office in Salem, Tamil Nadu, or navigate directly via Google Maps.</p>
+      </div>
+
+      <div class="card-glass glow-active" style="padding: 24px; overflow: hidden; border-radius: var(--radius-md);">
+        <div style="position: relative; width: 100%; height: 420px; border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-glass);">
+          <iframe 
+            src="https://maps.google.com/maps?q=11.6829566,78.1739798&amp;hl=en&amp;z=17&amp;output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0; filter: contrast(1.05) saturate(1.1);" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border-glass);">
+          <div>
+            <h4 style="font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px;">STACKLY Business Advisory</h4>
+            <p style="color: var(--text-muted); font-size: 14px;"><i class="fa-solid fa-location-dot" style="color: var(--primary); margin-right: 6px;"></i>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</p>
+          </div>
+          <a href="https://www.google.com/maps/place/Stackly/@11.6829566,78.1739798,17z/data=!3m1!4b1!4m6!3m5!1s0x3babefef7fd970bb:0xe11aef1a71994f9!8m2!3d11.6829566!4d78.1739798!16s%2Fg%2F11l660s35r?entry=ttu&amp;g_ep=EgoyMDI2MDcwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+            <i class="fa-solid fa-map-location-dot"></i> Open In Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION – REGIONAL ADVISORY DESKS -->
+  <section style="padding: 80px 0;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Global Operations</span>
+        <h2 class="section-title">Regional Advisory Desks</h2>
+        <p class="section-desc">Direct operating hours and contact hubs across our global advisory locations.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+        <!-- Regional Desk 1 -->
+        <div class="card-glass glow-active" style="padding: 32px;">
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px;">
+              <i class="fa-solid fa-building-flag"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 19px; font-weight: 700; color: #fff;">APAC &amp; India Desk (HQ)</h3>
+              <span style="font-size: 12px; color: var(--primary); font-weight: 600;">Salem, Tamil Nadu</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: var(--text-muted); border-top: 1px solid var(--border-glass); padding-top: 16px;">
+            <div><i class="fa-solid fa-clock" style="color: var(--primary); margin-right: 8px;"></i><strong>Hours:</strong> Mon – Fri: 9:00 AM – 7:00 PM IST</div>
+            <div><i class="fa-solid fa-phone" style="color: var(--primary); margin-right: 8px;"></i><strong>Phone:</strong> +91 9876543210</div>
+            <div><i class="fa-solid fa-envelope" style="color: var(--primary); margin-right: 8px;"></i><strong>Email:</strong> info@stackly.com</div>
+          </div>
+        </div>
+
+        <!-- Regional Desk 2 -->
+        <div class="card-glass glow-active" style="padding: 32px;">
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.3); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 18px;">
+              <i class="fa-solid fa-city"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 19px; font-weight: 700; color: #fff;">Americas Executive Desk</h3>
+              <span style="font-size: 12px; color: var(--accent); font-weight: 600;">New York, NY</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: var(--text-muted); border-top: 1px solid var(--border-glass); padding-top: 16px;">
+            <div><i class="fa-solid fa-clock" style="color: var(--accent); margin-right: 8px;"></i><strong>Hours:</strong> Mon – Fri: 8:00 AM – 6:00 PM EST</div>
+            <div><i class="fa-solid fa-phone" style="color: var(--accent); margin-right: 8px;"></i><strong>Phone:</strong> +1 (800) 555-7822</div>
+            <div><i class="fa-solid fa-envelope" style="color: var(--accent); margin-right: 8px;"></i><strong>Email:</strong> us-advisory@stackly.com</div>
+          </div>
+        </div>
+
+        <!-- Regional Desk 3 -->
+        <div class="card-glass glow-active" style="padding: 32px;">
+          <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 16px;">
+            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px;">
+              <i class="fa-solid fa-landmark"></i>
+            </div>
+            <div>
+              <h3 style="font-size: 19px; font-weight: 700; color: #fff;">EMEA Advisory Hub</h3>
+              <span style="font-size: 12px; color: var(--primary); font-weight: 600;">London, UK</span>
+            </div>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13.5px; color: var(--text-muted); border-top: 1px solid var(--border-glass); padding-top: 16px;">
+            <div><i class="fa-solid fa-clock" style="color: var(--primary); margin-right: 8px;"></i><strong>Hours:</strong> Mon – Fri: 8:30 AM – 5:30 PM GMT</div>
+            <div><i class="fa-solid fa-phone" style="color: var(--primary); margin-right: 8px;"></i><strong>Phone:</strong> +44 20 7946 0912</div>
+            <div><i class="fa-solid fa-envelope" style="color: var(--primary); margin-right: 8px;"></i><strong>Email:</strong> emea-advisory@stackly.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 – LIVE CHAT PREVIEW -->
+  <button class="chat-toggle" aria-label="Open Chat"><i class="fa-solid fa-comments"></i></button>
+  <div class="chat-preview-box">
+    <div class="chat-header">
+      <div class="chat-status-dot"></div>
+      <div>
+        <strong style="font-size: 14px; color: #fff; display: block;">STACKLY Advisor</strong>
+        <span style="font-size: 11px; color: #34d399;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Online</span>
+      </div>
+    </div>
+    <div class="chat-messages">
+      <div class="chat-msg bot">Hello! How can we help your business today?</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" placeholder="Type your strategic query...">
+      <button class="btn btn-primary" style="padding: 6px 14px; font-size: 12px;">Send</button>
+    </div>
+  </div>
+
+  <!-- SECTION 6 – FAQ ACCORDION -->
+  <section style="background: var(--bg-darker);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Help &amp; Clarifications</span>
+        <h2 class="section-title">Contact FAQ</h2>
+      </div>
+
+      <div class="faq-accordion">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How can I contact STACKLY?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>You can contact us via our online form, email (info@stackly.com), direct phone line (9876543210), or live chat preview.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How quickly will I receive a response?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Our executive advisory desk responds to all business inquiries within 4 business hours.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Do you work with startups?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! We have structured starter packages for high-growth tech &amp; retail startups.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Do you offer enterprise advisory?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, we deliver bespoke advisory solutions, board support, and digital transformation for large enterprises.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can I schedule a consultation?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Absolutely. Select your preferred date and business topic in our consultation request form above.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 – NEWSLETTER -->
+  <section style="text-align: center; padding: 80px 0; overflow: hidden;">
+    <div class="container" style="max-width: 640px;">
+      <h2 class="section-title newsletter-title" style="font-size: 28px; font-weight: 800; margin-bottom: 12px;">Stay Informed With STACKLY Briefings</h2>
+      <p class="section-desc newsletter-desc" style="color: var(--text-muted); font-size: 16px; margin-bottom: 28px;">Receive expert market telemetry and enterprise strategy insights.</p>
+      <form class="inline-newsletter-form" action="404.html" method="GET">
+        <input type="email" placeholder="Enter your business email" required class="newsletter-input">
+        <button type="submit" class="btn btn-primary newsletter-btn">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SECTION 8 – CTA -->
+  <section style="text-align: center; background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%); padding: 90px 0;">
+    <div class="container" style="max-width: 800px;">
+      <h2 style="font-size: 38px; font-weight: 800; margin-bottom: 16px;">Let's Build Your Next Business Strategy</h2>
+      <div style="display: flex; justify-content: center; gap: 16px; margin-top: 24px;">
+        <a href="404.html" class="btn btn-primary">Get Started</a>
+        <a href="404.html" class="btn btn-secondary">Book A Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMON FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Col 1: Brand Info & Logo -->
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/logo.webp" alt="STACKLY Logo">
+          </a>
+          <p class="footer-desc">
+            Empowering enterprise decisions through data-driven strategy, expert advisory, and growth intelligence.
+          </p>
+          <div class="footer-badge">
+            <span class="badge-dot"></span> Certified Advisory Partner
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Services</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <div class="footer-links">
+            <a href="404.html">Business Strategy</a>
+            <a href="404.html">Financial Advisory</a>
+            <a href="404.html">Growth Consulting</a>
+            <a href="404.html">Risk Management</a>
+            <a href="404.html">Market Research</a>
+            <a href="404.html">Digital Transformation</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <div class="footer-links">
+            <a href="404.html">Business Insights</a>
+            <a href="404.html">Blog</a>
+            <a href="404.html">Case Studies</a>
+            <a href="404.html">Guides</a>
+            <a href="404.html">FAQ</a>
+            <a href="404.html">Support</a>
+          </div>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h4>Newsletter</h4>
+          <p style="font-weight: 600; color: var(--text-main); margin-bottom: 8px;">Stay Ahead With Smarter Business Insights</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Enter your business email" required>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Subscribe</button>
+          </form>
+          <div class="social-icons">
+            <a href="404.html" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="404.html" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 STACKLY. All Rights Reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms &amp; Conditions</a>
+          <a href="404.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/validation.js"></script>
+</body>
+</html>

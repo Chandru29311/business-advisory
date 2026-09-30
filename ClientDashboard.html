@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Client Dashboard - STACKLY Business Advisory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <a href="ClientDashboard.html" class="sidebar-logo-link" style="display: flex; align-items: center;">
+          <img src="assets/logo.webp" alt="STACKLY Logo">
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" aria-label="Close Sidebar"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <ul class="sidebar-menu">
+        <li><a href="#client-tab-dashboard" class="sidebar-link active" data-tab="client-tab-dashboard"><span class="icon"><i class="fa-solid fa-chart-pie"></i></span> <span>Dashboard</span></a></li>
+        <li><a href="#client-tab-mybusiness" class="sidebar-link" data-tab="client-tab-mybusiness"><span class="icon"><i class="fa-solid fa-building"></i></span> <span>My Business</span></a></li>
+        <li><a href="#client-tab-plan" class="sidebar-link" data-tab="client-tab-plan"><span class="icon"><i class="fa-solid fa-clock-rotate-left"></i></span> <span>Advisory Plan</span></a></li>
+        <li><a href="#client-tab-strategy" class="sidebar-link" data-tab="client-tab-strategy"><span class="icon"><i class="fa-solid fa-bullseye"></i></span> <span>Strategy</span></a></li>
+        <li><a href="#client-tab-reports" class="sidebar-link" data-tab="client-tab-reports"><span class="icon"><i class="fa-solid fa-file-invoice"></i></span> <span>Reports</span></a></li>
+      </ul>
+
+      <div class="sidebar-user-info">
+        <div class="avatar user-avatar-icon" style="width: 32px; height: 32px; font-size: 12px; flex-shrink: 0;">CL</div>
+        <div class="user-details">
+          <strong class="user-display-email-text">client@stackly.com</strong>
+          <span class="user-display-role-text">Client Portal</span>
+        </div>
+      </div>
+
+      <div class="sidebar-logout">
+        <a href="Login.html" class="sidebar-link"><span class="icon"><i class="fa-solid fa-right-from-bracket"></i></span> <span>Logout</span></a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Mobile Top Navbar -->
+      <div class="mobile-topbar">
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle Sidebar Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="mobile-page-title" id="mobile-page-title">Dashboard</div>
+        <div class="mobile-user-avatar user-avatar-firstletter">C</div>
+      </div>
+
+      <div class="dashboard-topbar">
+        <div class="topbar-title">
+          <h1>Client Business Workspace</h1>
+          <p>Welcome back, Strategic Executive Portal</p>
+        </div>
+        <div class="topbar-user">
+          <div class="user-badge">
+            <div class="avatar user-avatar-icon">CL</div>
+            <div>
+              <strong class="user-display-email-text" style="font-size: 14px; color: #fff; display: block;">client@stackly.com</strong>
+              <span class="user-display-role-text" style="font-size: 11px; color: var(--primary);">Client Portal</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 1: DASHBOARD OVERVIEW -->
+      <div id="client-tab-dashboard" class="tab-content active">
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Business Health</span>
+              <h3 style="color: var(--primary);">94 / 100</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Growth Score</span>
+              <h3 style="color: var(--accent);">88%</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-chart-line"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Current Plan</span>
+              <h3 style="font-size: 18px;">Enterprise</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Advisory Sessions</span>
+              <h3>12 Active</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-handshake"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Strategic Goals</span>
+              <h3>8 / 10 Met</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Risk Level</span>
+              <h3 style="color: #60a5fa;">Low</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Revenue Growth Progression</h3>
+            <div class="chart-container">
+              <canvas id="clientRevenueChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Monthly Customer Acquisition</h3>
+            <div class="chart-container">
+              <canvas id="clientCustomerChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Budgeted vs Actual Expenses</h3>
+            <div class="chart-container">
+              <canvas id="clientExpenseChart"></canvas>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>KPI Milestone Completion</h3>
+            <div class="chart-container">
+              <canvas id="clientKPIPerformanceChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strategic Roadmap Milestones Table -->
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Active Strategic Roadmap Milestones</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">Manage Goals</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Strategic Milestone</th>
+                <th>Advisory Advisor</th>
+                <th>Target Date</th>
+                <th>Status</th>
+                <th>Progress</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>APAC Market Entry Strategy</td>
+                <td>Sarah Jenkins (Partner)</td>
+                <td>Q4 2026</td>
+                <td><span class="status-badge status-active">On Track</span></td>
+                <td><strong style="color: var(--primary);">85%</strong></td>
+              </tr>
+              <tr>
+                <td>Financial Cost Optimization</td>
+                <td>Marcus Vance (Financial Director)</td>
+                <td>Q3 2026</td>
+                <td><span class="status-badge status-active">Completed</span></td>
+                <td><strong style="color: var(--primary);">100%</strong></td>
+              </tr>
+              <tr>
+                <td>Process Automation Workflow</td>
+                <td>David Chen (Tech Lead)</td>
+                <td>Q4 2026</td>
+                <td><span class="status-badge status-pending">In Progress</span></td>
+                <td><strong style="color: #fbbf24;">60%</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2: MY BUSINESS -->
+      <div id="client-tab-mybusiness" class="tab-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Total Revenue YTD</span>
+              <h3 style="color: var(--primary);">$3,200,000</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Net Profit Margin</span>
+              <h3>24.5%</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-percent"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Workforce Count</span>
+              <h3>145 FTE</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Market Share</span>
+              <h3 style="color: var(--accent);">18.2%</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-chart-pie"></i></div>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Departmental Spending Breakdown</h3>
+            <div class="chart-container">
+              <canvas id="clientDeptBudgetChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Quarterly Profitability Trend</h3>
+            <div class="chart-container">
+              <canvas id="clientQuarterlyProfitChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Operational Business Units Overview</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">Unit Settings</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Business Unit</th>
+                <th>Unit Head</th>
+                <th>Annual Budget</th>
+                <th>ROI Growth</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>North America Sales &amp; Distribution</td>
+                <td>Mark Stevens</td>
+                <td>$1,200,000</td>
+                <td><strong style="color: var(--primary);">+18.4%</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+              </tr>
+              <tr>
+                <td>APAC Operations Hub</td>
+                <td>Li Wei</td>
+                <td>$850,000</td>
+                <td><strong style="color: var(--primary);">+26.0%</strong></td>
+                <td><span class="status-badge status-active">Expanding</span></td>
+              </tr>
+              <tr>
+                <td>R&amp;D AI Innovation Lab</td>
+                <td>Sarah Miller</td>
+                <td>$650,000</td>
+                <td><strong style="color: #fbbf24;">+14.2%</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+              </tr>
+              <tr>
+                <td>Supply Chain &amp; Logistics</td>
+                <td>James Thorne</td>
+                <td>$500,000</td>
+                <td><strong style="color: var(--primary);">+8.7%</strong></td>
+                <td><span class="status-badge status-active">Active</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: ADVISORY PLAN -->
+      <div id="client-tab-plan" class="tab-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Subscription Tier</span>
+              <h3 style="color: var(--primary);">Enterprise</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-crown"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Included Monthly Hours</span>
+              <h3>40 Hours</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Hours Consumed</span>
+              <h3>28 / 40 hrs</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-chart-simple"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Lead Senior Partner</span>
+              <h3 style="font-size: 16px;">Dr. Marcus Vance</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-user-tie"></i></div>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Monthly Advisory Hours Consumption</h3>
+            <div class="chart-container">
+              <canvas id="clientPlanUsageChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Quarterly Deliverables Progress</h3>
+            <div class="chart-container">
+              <canvas id="clientPlanDeliverablesChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Advisory Subscription Modules &amp; Usage</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">Upgrade Plan</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Service Module</th>
+                <th>Assigned Specialist</th>
+                <th>Session Frequency</th>
+                <th>Hours Used</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Strategic Executive Consulting</td>
+                <td>Dr. Marcus Vance</td>
+                <td>Bi-Weekly</td>
+                <td>16 / 20 hrs</td>
+                <td><span class="status-badge status-active">Active</span></td>
+              </tr>
+              <tr>
+                <td>Financial Restructuring Audit</td>
+                <td>Sarah Jenkins</td>
+                <td>Monthly</td>
+                <td>8 / 10 hrs</td>
+                <td><span class="status-badge status-active">Completed</span></td>
+              </tr>
+              <tr>
+                <td>AI &amp; Tech Architecture Advisory</td>
+                <td>David Chen</td>
+                <td>On-Demand</td>
+                <td>4 / 10 hrs</td>
+                <td><span class="status-badge status-pending">In Progress</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 4: STRATEGY -->
+      <div id="client-tab-strategy" class="tab-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Strategic Initiatives</span>
+              <h3>6 Projects</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-bullseye"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Action Items</span>
+              <h3>12 Active</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-list-check"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Risk Factors Monitored</span>
+              <h3>4 Factors</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-shield-virus"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Projected ROI</span>
+              <h3 style="color: var(--primary);">3.5x</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Strategic Roadmap Progress by Pillar</h3>
+            <div class="chart-container">
+              <canvas id="clientStrategyProgressChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Corporate Risk Profile &amp; Preparedness</h3>
+            <div class="chart-container">
+              <canvas id="clientRiskMatrixChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Strategic Execution &amp; Key Action Items</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">Add Initiative</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Action Item</th>
+                <th>Strategic Pillar</th>
+                <th>Advisory Lead</th>
+                <th>Target Due Date</th>
+                <th>Priority</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>AI Workflow Automation</td>
+                <td>Technology &amp; Ops</td>
+                <td>David Chen</td>
+                <td>Oct 15, 2026</td>
+                <td><strong style="color: #f87171;">High</strong></td>
+                <td><span class="status-badge status-pending">In Progress</span></td>
+              </tr>
+              <tr>
+                <td>EU Compliance Audit Prep</td>
+                <td>Governance &amp; Legal</td>
+                <td>Elena Rostova</td>
+                <td>Nov 30, 2026</td>
+                <td><strong style="color: #fbbf24;">Medium</strong></td>
+                <td><span class="status-badge status-pending">Pending Review</span></td>
+              </tr>
+              <tr>
+                <td>Global Supply Resilience</td>
+                <td>Supply Chain</td>
+                <td>Dr. Marcus Vance</td>
+                <td>Dec 20, 2026</td>
+                <td><strong style="color: #f87171;">High</strong></td>
+                <td><span class="status-badge status-active">On Track</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 5: REPORTS -->
+      <div id="client-tab-reports" class="tab-content">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Available Reports</span>
+              <h3>24 Files</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-folder-open"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Latest Audit</span>
+              <h3 style="font-size: 16px;">Sep 25, 2026</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-calendar-day"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Benchmark Rating</span>
+              <h3 style="color: var(--primary);">Grade A+</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <span>Security Scorecard</span>
+              <h3>98 / 100</h3>
+            </div>
+            <div class="stat-icon"><i class="fa-solid fa-lock"></i></div>
+          </div>
+        </div>
+
+        <div class="charts-grid">
+          <div class="chart-card">
+            <h3>Advisory Documentation Access Volume</h3>
+            <div class="chart-container">
+              <canvas id="clientReportDownloadsChart"></canvas>
+            </div>
+          </div>
+          <div class="chart-card">
+            <h3>Industry Benchmarking vs Internal Score</h3>
+            <div class="chart-container">
+              <canvas id="clientBenchmarkChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="data-table-card">
+          <div class="table-header">
+            <h3>Executive Strategic Document Vault</h3>
+            <a href="404.html" class="btn btn-secondary" style="font-size: 13px; padding: 8px 16px;">Request Report</a>
+          </div>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Document Name</th>
+                <th>Category</th>
+                <th>Date Generated</th>
+                <th>File Size</th>
+                <th>Prepared By</th>
+                <th>Download</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Q3 Business Performance Audit</td>
+                <td>Financial Audit</td>
+                <td>Sep 25, 2026</td>
+                <td>3.8 MB</td>
+                <td>Sarah Jenkins</td>
+                <td><a href="404.html" style="color: var(--primary);"><i class="fa-solid fa-download"></i> PDF</a></td>
+              </tr>
+              <tr>
+                <td>Enterprise Growth Strategy 2027</td>
+                <td>Strategic Advisory</td>
+                <td>Sep 12, 2026</td>
+                <td>6.4 MB</td>
+                <td>Dr. Marcus Vance</td>
+                <td><a href="404.html" style="color: var(--primary);"><i class="fa-solid fa-download"></i> PDF</a></td>
+              </tr>
+              <tr>
+                <td>Regulatory Risk &amp; Security Assessment</td>
+                <td>Governance</td>
+                <td>Aug 30, 2026</td>
+                <td>2.1 MB</td>
+                <td>Elena Rostova</td>
+                <td><a href="404.html" style="color: var(--primary);"><i class="fa-solid fa-download"></i> PDF</a></td>
+              </tr>
+              <tr>
+                <td>Operational Efficiency Benchmarking</td>
+                <td>Operations</td>
+                <td>Aug 14, 2026</td>
+                <td>4.0 MB</td>
+                <td>David Chen</td>
+                <td><a href="404.html" style="color: var(--primary);"><i class="fa-solid fa-download"></i> PDF</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

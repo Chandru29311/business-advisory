@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - STACKLY Business Advisory</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- COMMON NAVBAR -->
+  <nav class="navbar">
+    <div class="container navbar-container">
+      <a href="index.html" class="navbar-logo">
+        <img src="assets/logo.webp" alt="STACKLY Logo">
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="service.html" class="nav-link active">Services</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="Login.html" class="btn btn-login">Login</a>
+      </div>
+
+      <button class="hamburger" aria-label="Toggle Navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu">
+      <div class="mobile-menu-header">
+        <a href="index.html" class="mobile-menu-logo">
+          <img src="assets/logo.webp" alt="STACKLY Logo">
+        </a>
+        <button class="mobile-menu-close" aria-label="Close Navigation Menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="service.html" class="nav-link active">Services</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+      <a href="Login.html" class="btn btn-login">Login</a>
+    </div>
+  </nav>
+
+  <!-- SECTION 1 – HERO -->
+  <section style="padding-top: 160px; padding-bottom: 80px; text-align: center;">
+    <div class="container" style="max-width: 850px;">
+      <span class="section-subtitle">Precision Advisory Portfolio</span>
+      <h1 class="hero-title" style="font-size: 48px; font-weight: 800; margin-bottom: 24px;">
+        Business Advisory Built Around <span style="color: var(--primary);">Your Goals</span>
+      </h1>
+      <p style="color: var(--text-muted); font-size: 18px; margin-bottom: 36px;">
+        Get strategic guidance, financial insights, growth planning, risk management, and digital transformation support from STACKLY.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 16px;">
+        <a href="404.html" class="btn btn-primary">Explore Services</a>
+        <a href="404.html" class="btn btn-secondary">Talk To An Advisor</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 – STRATEGIC BUSINESS ADVISORY -->
+  <section style="background: var(--bg-darker);">
+    <div class="container auto-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div>
+        <span class="section-subtitle">Core Advisory</span>
+        <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 20px;">Strategic Business Advisory</h2>
+        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 24px;">
+          Develop clear business roadmaps, sharpen competitive positioning, and orchestrate market expansion.
+        </p>
+        <ul style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: var(--text-sub);">
+          <li><i class="fa-solid fa-check"></i> Business Planning &amp; Operational Alignment</li>
+          <li><i class="fa-solid fa-check"></i> Strategic Roadmaps &amp; Target Milestones</li>
+          <li><i class="fa-solid fa-check"></i> Competitive Positioning &amp; Value Proposition</li>
+          <li><i class="fa-solid fa-check"></i> Sustainable Growth Strategy</li>
+          <li><i class="fa-solid fa-check"></i> Market Expansion &amp; Channel Development</li>
+        </ul>
+      </div>
+      <div>
+        <img src="assets/strategy.webp" alt="Strategic Planning Solution" style="border-radius: var(--radius-md); border: 1px solid var(--border-glass);">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 – FINANCIAL ADVISORY -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Financial Intelligence</span>
+        <h2 class="section-title">Financial Advisory Services</h2>
+        <p class="section-desc">Empowering leadership with transparent financial metrics and capital efficiency.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px;">
+        <div class="card-glass">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 10px;">Financial Planning</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">Long-term budget modeling and capital requirement forecasts.</p>
+        </div>
+        <div class="card-glass">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 10px;">Cash Flow Analysis</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">Liquidity optimization and working capital management.</p>
+        </div>
+        <div class="card-glass">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-filter-circle-dollar"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 10px;">Cost Optimization</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">Identifying operational overhead inefficiencies.</p>
+        </div>
+        <div class="card-glass">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 10px;">Financial Forecasting</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">Predictive scenario testing &amp; revenue sensitivity models.</p>
+        </div>
+        <div class="card-glass">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-gauge-high"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; color: var(--primary); margin-bottom: 10px;">Performance Analysis</h4>
+          <p style="font-size: 14px; color: var(--text-muted);">Quarterly margin analysis and benchmark reviews.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 – GROWTH CONSULTING -->
+  <section style="background: var(--bg-darker);">
+    <div class="container auto-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div>
+        <img src="assets/growth.webp" alt="Growth Consulting Solutions" style="border-radius: var(--radius-md); border: 1px solid var(--border-glass);">
+      </div>
+      <div>
+        <span class="section-subtitle">Scalable Scaling</span>
+        <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 20px;">Growth Consulting</h2>
+        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 24px;">
+          Accelerate your market trajectory with disciplined revenue frameworks and customer expansion models.
+        </p>
+        <div class="subcard-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="card-glass" style="padding: 16px;">
+            <h5 style="font-size: 16px; font-weight: 700; color: var(--text-main);">Revenue Growth</h5>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Optimizing pricing strategy & ARPU.</p>
+          </div>
+          <div class="card-glass" style="padding: 16px;">
+            <h5 style="font-size: 16px; font-weight: 700; color: var(--text-main);">Customer Expansion</h5>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Retention & upsell lifecycle tactics.</p>
+          </div>
+          <div class="card-glass" style="padding: 16px;">
+            <h5 style="font-size: 16px; font-weight: 700; color: var(--text-main);">Market Entry</h5>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Cross-regional expansion blueprints.</p>
+          </div>
+          <div class="card-glass" style="padding: 16px;">
+            <h5 style="font-size: 16px; font-weight: 700; color: var(--text-main);">Product Strategy</h5>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Product-market fit & roadmap execution.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 – RISK MANAGEMENT -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Resilience &amp; Compliance</span>
+        <h2 class="section-title">Risk Management</h2>
+        <p class="section-desc">Protect operational integrity through proactive risk auditing and mitigation strategies.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+        <div class="card-glass" style="border-top: 4px solid var(--primary);">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-coins"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Financial Risk</h4>
+          <p style="font-size: 13px; color: var(--text-muted);">Currency, credit &amp; interest rate volatility protection.</p>
+        </div>
+        <div class="card-glass" style="border-top: 4px solid var(--primary);">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-gears"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Operational Risk</h4>
+          <p style="font-size: 13px; color: var(--text-muted);">Supply chain, continuity &amp; internal control checks.</p>
+        </div>
+        <div class="card-glass" style="border-top: 4px solid var(--primary);">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Market Risk</h4>
+          <p style="font-size: 13px; color: var(--text-muted);">Macroeconomic shifts &amp; competitive disruption defense.</p>
+        </div>
+        <div class="card-glass" style="border-top: 4px solid var(--primary);">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Compliance Risk</h4>
+          <p style="font-size: 13px; color: var(--text-muted);">Regulatory, governance &amp; legal standard compliance.</p>
+        </div>
+        <div class="card-glass" style="border-top: 4px solid var(--primary);">
+          <div style="width: 48px; height: 48px; border-radius: 12px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); display: flex; align-items: center; justify-content: center; color: var(--primary); font-size: 22px; margin-bottom: 14px;">
+            <i class="fa-solid fa-chess-knight"></i>
+          </div>
+          <h4 style="font-size: 18px; font-weight: 700; margin-bottom: 8px;">Strategic Risk</h4>
+          <p style="font-size: 13px; color: var(--text-muted);">M&amp;A, investment, &amp; business model sustainability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6 – MARKET INTELLIGENCE -->
+  <section style="background: var(--bg-darker);">
+    <div class="container auto-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div>
+        <span class="section-subtitle">Data &amp; Analytics</span>
+        <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 20px;">Market Intelligence</h2>
+        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 24px;">
+          Deep-dive analysis into market trends, competitor moves, customer intent, and high-margin opportunities.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 12px; font-size: 15px; color: var(--text-sub);">
+          <div><i class="fa-solid fa-circle-check" style="color: var(--primary); margin-right: 8px;"></i><strong>Competitor Analysis:</strong> Benchmarking market share &amp; positioning.</div>
+          <div><i class="fa-solid fa-circle-check" style="color: var(--primary); margin-right: 8px;"></i><strong>Market Research:</strong> Quantitative surveys &amp; TAM estimation.</div>
+          <div><i class="fa-solid fa-circle-check" style="color: var(--primary); margin-right: 8px;"></i><strong>Industry Trends:</strong> Forecasting tech &amp; consumer shifts.</div>
+          <div><i class="fa-solid fa-circle-check" style="color: var(--primary); margin-right: 8px;"></i><strong>Customer Insights:</strong> Behavioral segmentation &amp; persona profiling.</div>
+        </div>
+      </div>
+      <div>
+        <img src="assets/market.webp" alt="Market Intelligence Analytics" style="border-radius: var(--radius-md); border: 1px solid var(--border-glass);">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 – DIGITAL TRANSFORMATION -->
+  <section>
+    <div class="container auto-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+      <div>
+        <img src="assets/digital.webp" alt="Digital Transformation Solutions" style="border-radius: var(--radius-md); border: 1px solid var(--border-glass);">
+      </div>
+      <div>
+        <span class="section-subtitle">Modern Operations</span>
+        <h2 style="font-size: 36px; font-weight: 800; margin-bottom: 20px;">Digital Transformation</h2>
+        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 24px;">
+          Re-engineer operational infrastructure with modern software automation, data pipelines, and customer experience tools.
+        </p>
+        <div class="subcard-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="card-glass" style="padding: 16px;">
+            <h5 style="font-size: 15px; font-weight: 700; color: var(--primary);">Process Automation</h5>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Eliminating manual operational friction.</p>
+          </div>
+          <div class="card-glass" style="padding: 16px;">
+            <h5 style="font-size: 15px; font-weight: 700; color: var(--primary);">Technology Strategy</h5>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Selecting optimal SaaS &amp; tech stacks.</p>
+          </div>
+          <div class="card-glass" style="padding: 16px;">
+            <h5 style="font-size: 15px; font-weight: 700; color: var(--primary);">Data Intelligence</h5>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Executive dashboards &amp; analytics pipelines.</p>
+          </div>
+          <div class="card-glass" style="padding: 16px;">
+            <h5 style="font-size: 15px; font-weight: 700; color: var(--primary);">Digital Operations</h5>
+            <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Agile workflow implementations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8 – FAQ + CTA -->
+  <section id="faq" style="background: var(--bg-darker);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-subtitle">Frequently Asked Questions</span>
+        <h2 class="section-title">Got Questions? We Have Answers</h2>
+        <p class="section-desc">Learn how STACKLY Business Advisory delivers results.</p>
+      </div>
+
+      <div class="faq-accordion">
+        <!-- Question 1 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What does STACKLY provide?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>STACKLY provides end-to-end business advisory including strategic planning, financial forecasting, growth consulting, risk management, market intelligence, and digital transformation.</p>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Who can use STACKLY?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Our advisory services are tailored for startups, SMEs, and large enterprise organizations looking for data-driven strategic direction and operational scaling.</p>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can startups use advisory services?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes! We offer dedicated Starter advisory tiers specifically built for early-stage founders to refine business models, capital allocation, and go-to-market strategies.</p>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does the advisory process work?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We follow a proven 6-step framework: Understand, Analyze, Strategize, Implement, Measure, and Grow, ensuring full alignment with your executive team.</p>
+          </div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How do I get started?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Simply choose an Advisory Plan or submit an inquiry through our Contact page to schedule an initial strategic consultation with a STACKLY Senior Partner.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Inside Section 8 -->
+      <div style="text-align: center; margin-top: 80px;">
+        <h3 style="font-size: 32px; font-weight: 800; margin-bottom: 16px;">Ready To Build A Stronger Business?</h3>
+        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 24px;">Let our advisors help you navigate your next growth milestone.</p>
+        <a href="404.html" class="btn btn-primary">Schedule Consultation</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMON FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Col 1: Brand Info & Logo -->
+        <div class="footer-col footer-brand">
+          <a href="index.html" class="footer-logo">
+            <img src="assets/logo.webp" alt="STACKLY Logo">
+          </a>
+          <p class="footer-desc">
+            Empowering enterprise decisions through data-driven strategy, expert advisory, and growth intelligence.
+          </p>
+          <div class="footer-badge">
+            <span class="badge-dot"></span> Certified Advisory Partner
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Services</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <div class="footer-links">
+            <a href="404.html">Business Strategy</a>
+            <a href="404.html">Financial Advisory</a>
+            <a href="404.html">Growth Consulting</a>
+            <a href="404.html">Risk Management</a>
+            <a href="404.html">Market Research</a>
+            <a href="404.html">Digital Transformation</a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <div class="footer-links">
+            <a href="404.html">Business Insights</a>
+            <a href="404.html">Blog</a>
+            <a href="404.html">Case Studies</a>
+            <a href="404.html">Guides</a>
+            <a href="404.html">FAQ</a>
+            <a href="404.html">Support</a>
+          </div>
+        </div>
+
+        <div class="footer-col footer-newsletter">
+          <h4>Newsletter</h4>
+          <p style="font-weight: 600; color: var(--text-main); margin-bottom: 8px;">Stay Ahead With Smarter Business Insights</p>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Enter your business email" required>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Subscribe</button>
+          </form>
+          <div class="social-icons">
+            <a href="404.html" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="404.html" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="404.html" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="404.html" title="X / Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="404.html" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 STACKLY. All Rights Reserved.</div>
+        <div class="footer-bottom-links">
+          <a href="404.html">Privacy Policy</a>
+          <a href="404.html">Terms &amp; Conditions</a>
+          <a href="404.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/validation.js"></script>
+</body>
+</html>
